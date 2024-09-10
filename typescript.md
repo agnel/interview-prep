@@ -156,3 +156,130 @@ In this configuration:
 - `importHelpers` is `true`, which means that TypeScript will use helper functions from the `tslib` package.
 - `downlevelIteration` is `true`, ensuring that iteration constructs work correctly in ES5.
 - The `lib` option includes both `es6` and `dom` libraries, so type definitions for ES6 features and DOM APIs are included.
+
+## access modifiers in typescript
+
+In TypeScript, access modifiers control the visibility and accessibility of class members (properties and methods). They help enforce encapsulation and manage how class members can be accessed from outside the class. TypeScript provides three primary access modifiers:
+
+### 1. `public`
+
+- **Description**: Members marked as `public` are accessible from anywhere. This is the default access level if no modifier is specified.
+- **Usage**:
+  ```typescript
+  class Person {
+    public name: string;
+
+    constructor(name: string) {
+      this.name = name;
+    }
+
+    public greet() {
+      console.log(`Hello, my name is ${this.name}`);
+    }
+  }
+
+  const person = new Person('Alice');
+  console.log(person.name); // Accessible
+  person.greet(); // Accessible
+  ```
+
+### 2. `private`
+
+- **Description**: Members marked as `private` are only accessible within the class they are declared in. They cannot be accessed from outside the class or even by derived classes.
+- **Usage**:
+  ```typescript
+  class Person {
+    private age: number;
+
+    constructor(age: number) {
+      this.age = age;
+    }
+
+    public getAge(): number {
+      return this.age;
+    }
+  }
+
+  const person = new Person(30);
+  console.log(person.getAge()); // Accessible
+  // console.log(person.age); // Error: Property 'age' is private and only accessible within class 'Person'.
+  ```
+
+### 3. `protected`
+
+- **Description**: Members marked as `protected` are accessible within the class they are declared in and by derived (sub)classes. They are not accessible from outside the class directly.
+- **Usage**:
+  ```typescript
+  class Animal {
+    protected species: string;
+
+    constructor(species: string) {
+      this.species = species;
+    }
+  }
+
+  class Dog extends Animal {
+    public bark() {
+      console.log(`Woof! I am a ${this.species}`);
+    }
+  }
+
+  const dog = new Dog('Labrador');
+  dog.bark(); // Accessible
+  // console.log(dog.species); // Error: Property 'species' is protected and only accessible within class 'Animal' and its subclasses.
+  ```
+
+### Summary
+
+- **`public`**: Accessible from anywhere (default).
+- **`private`**: Accessible only within the class where it is declared.
+- **`protected`**: Accessible within the class and by subclasses.
+
+### Example: Combining Access Modifiers
+
+Here's an example combining all three access modifiers:
+
+```typescript
+class Person {
+  public name: string; // Public member
+  private age: number; // Private member
+  protected address: string; // Protected member
+
+  constructor(name: string, age: number, address: string) {
+    this.name = name;
+    this.age = age;
+    this.address = address;
+  }
+
+  public getDetails() {
+    return `${this.name}, ${this.age}, ${this.address}`;
+  }
+}
+
+class Employee extends Person {
+  private employeeId: number;
+
+  constructor(name: string, age: number, address: string, employeeId: number) {
+    super(name, age, address);
+    this.employeeId = employeeId;
+  }
+
+  public getEmployeeDetails() {
+    return `${this.getDetails()}, Employee ID: ${this.employeeId}`;
+  }
+}
+
+const emp = new Employee('John Doe', 30, '123 Main St', 12345);
+console.log(emp.name); // Accessible
+console.log(emp.getDetails()); // Accessible
+console.log(emp.getEmployeeDetails()); // Accessible
+// console.log(emp.age); // Error: Property 'age' is private and only accessible within class 'Person'.
+// console.log(emp.address); // Error: Property 'address' is protected and only accessible within class 'Person' and its subclasses.
+// console.log(emp.employeeId); // Error: Property 'employeeId' is private and only accessible within class 'Employee'.
+```
+
+In this example:
+- `name` is a `public` member, so it is accessible from anywhere.
+- `age` is a `private` member, so it is only accessible within the `Person` class.
+- `address` is a `protected` member, so it is accessible within the `Person` class and `Employee` subclass.
+- `employeeId` is `private` within the `Employee` class.
