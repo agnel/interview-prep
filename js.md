@@ -2978,3 +2978,98 @@ const curryBetter =
       ? fn(...args)
       : (...restArgs) => curryBetter(fn)(...args, ...restArgs);
 ```
+
+## difference between commonjs and es6 module
+
+CommonJS and ES6 (ECMAScript 2015) modules are two different module systems used in JavaScript to manage code dependencies and modularize code. Here's a comparison of the two:
+
+### CommonJS Modules
+
+**CommonJS** is a module system that originated in the Node.js ecosystem and is widely used for server-side JavaScript. Here are the key characteristics:
+
+- **Syntax**: Uses `require` for importing and `module.exports` for exporting.
+  ```javascript
+  // Importing a module
+  const moduleA = require('./moduleA');
+
+  // Exporting from a module
+  module.exports = {
+    someFunction: function() {
+      // ...
+    }
+  };
+  ```
+
+- **Loading**: Modules are loaded synchronously. This works well in server-side environments like Node.js but can be limiting for client-side code in browsers.
+
+- **Scope**: Each module has its own scope. Variables and functions declared in one module are not visible to others unless explicitly exported.
+
+- **Compatibility**: CommonJS modules are primarily used in Node.js. They are not natively supported in browsers, though tools like Browserify or Webpack can bundle CommonJS modules for browser use.
+
+### ES6 Modules
+
+**ES6 Modules** (also known as ES Modules) are part of the ECMAScript 2015 specification and are the standardized module system for JavaScript. Key characteristics include:
+
+- **Syntax**: Uses `import` and `export` statements.
+  ```javascript
+  // Importing a module
+  import { someFunction } from './moduleA';
+
+  // Exporting from a module
+  export function someFunction() {
+    // ...
+  }
+  ```
+
+- **Loading**: Modules are loaded asynchronously by default. This is useful for client-side JavaScript in browsers, allowing for more efficient code splitting and lazy loading.
+
+- **Scope**: ES6 modules also have their own scope. Importing and exporting is more declarative and static, which allows for better optimizations by JavaScript engines.
+
+- **Compatibility**: ES6 modules are natively supported in modern browsers and in recent versions of Node.js (with experimental support for older versions). They are the standard for both client-side and server-side JavaScript.
+
+### Key Differences
+
+1. **Loading Mechanism**:
+   - **CommonJS**: Synchronous loading.
+   - **ES6 Modules**: Asynchronous loading.
+
+2. **Syntax**:
+   - **CommonJS**: Uses `require()` and `module.exports`.
+   - **ES6 Modules**: Uses `import` and `export`.
+
+3. **Static vs. Dynamic**:
+   - **CommonJS**: Modules are dynamic and can be altered after they are loaded.
+   - **ES6 Modules**: Modules are static; imports and exports are resolved at compile time, allowing for better static analysis and tree-shaking.
+
+4. **Default Exports**:
+   - **CommonJS**: Uses `module.exports` for default exports.
+   - **ES6 Modules**: Supports both named exports and default exports with `export default`.
+
+5. **Module Resolution**:
+   - **CommonJS**: Resolution is synchronous and occurs at runtime.
+   - **ES6 Modules**: Resolution is asynchronous and occurs at compile time.
+
+### Example of Both Module Systems
+
+**CommonJS Example**:
+```javascript
+// math.js (CommonJS Module)
+const add = (a, b) => a + b;
+module.exports = { add };
+
+// app.js
+const math = require('./math');
+console.log(math.add(2, 3)); // 5
+```
+
+**ES6 Module Example**:
+```javascript
+// math.js (ES6 Module)
+export const add = (a, b) => a + b;
+
+// app.js
+import { add } from './math';
+console.log(add(2, 3)); // 5
+```
+
+In summary, ES6 modules offer a standardized, more flexible module system with support for asynchronous loading and static analysis, whereas CommonJS remains a strong choice for server-side JavaScript with its synchronous loading and dynamic capabilities.
