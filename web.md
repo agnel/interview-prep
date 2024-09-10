@@ -145,4 +145,28 @@ REST stands for **Representational State Transfer**. It is an architectural styl
 
 Overall, REST APIs are a popular choice for web services due to their simplicity, scalability, and flexibility. However, they may not be suitable for all scenarios, and understanding their strengths and limitations can help in designing effective systems.
 
+## What is an API contract?
 
+An API contract is a formal agreement that specifies how different systems or components interact through an Application Programming Interface (API). It defines the rules, expectations, and constraints for how API requests and responses should be structured and processed. Here are the key components of an API contract:
+
+1. **Endpoints**: Defines the URIs or paths where the API can be accessed, along with the methods (e.g., GET, POST, PUT, DELETE) that are supported at each endpoint.
+
+2. **Request and Response Formats**: Specifies the format and structure of requests and responses. This includes data types, required fields, optional fields, and the overall schema for request bodies and response payloads.
+
+3. **HTTP Methods**: Details which HTTP methods are allowed for each endpoint (e.g., GET for fetching data, POST for creating new records).
+
+4. **Authentication and Authorization**: Outlines the methods and requirements for authentication (e.g., API keys, OAuth tokens) and authorization to ensure that only permitted users can access certain functionalities.
+
+5. **Status Codes**: Describes the HTTP status codes that the API will return to indicate the result of a request (e.g., 200 for success, 404 for not found, 500 for server error).
+
+6. **Error Handling**: Defines how errors should be communicated back to the client, including the format and content of error messages.
+
+7. **Rate Limiting and Throttling**: Specifies any limits on how frequently the API can be accessed and the actions that will be taken if these limits are exceeded.
+
+8. **Versioning**: Outlines how different versions of the API are handled, allowing clients to specify which version they are using and ensuring compatibility across versions.
+
+9. **Examples**: Provides sample requests and responses to illustrate how the API should be used and what clients can expect.
+
+10. **Contract Testing**: Sometimes, the API contract is used as a basis for testing to ensure that the API implementation adheres to the agreed-upon specifications and behaves correctly in different scenarios.
+
+In essence, the API contract acts as a blueprint for both API developers and consumers, ensuring that there is a clear, mutual understanding of how interactions should occur, which helps prevent misunderstandings and integration issues.
