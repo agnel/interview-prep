@@ -571,3 +571,19 @@ Redux provides a way to manage the state of an application in a single, centrali
 
 Redux provides a structured approach to managing application state through a central store, actions, and reducers, with a focus on predictability and unidirectional data flow. However, it introduces boilerplate, complexity, and performance considerations that may not be necessary for all applications. Tools like `Redux Toolkit` and middleware can help mitigate some of these issues, making Redux more accessible and manageable.
 
+## What's new in React 17?
+
+React 17, released in October 2020, focused more on making incremental updates easier rather than introducing new features. Here are some of the key changes and improvements:
+
+1. **No New Features**: React 17 did not introduce any new features or major changes to the existing API. This version was more about making React upgrades smoother and improving the overall developer experience.
+
+2. **Event Delegation Changes**: React 17 changed how event delegation works. Previously, React used a single global event listener at the `document` level for all events. In React 17, the event delegation is now handled at the root of the React tree. This change was intended to make it easier to integrate React with other libraries or frameworks that manipulate the DOM.
+
+3. **Gradual Upgrades**: React 17 improved the ability to upgrade React incrementally. This means you can upgrade React in a part of your application and then gradually upgrade the rest of your application, without needing to do a full migration all at once.
+
+4. **No More `ReactDOM.render` for Server-Side Rendering**: With React 17, the `ReactDOM.render` method is no longer used for server-side rendering. Instead, you should use `ReactDOM.hydrate` or `ReactDOM.createRoot` (introduced in React 18) for these purposes.
+
+5. **New JSX Transform**: While not a change in React 17 itself, it's worth noting that React 17 introduced the new JSX transform, which is supported in the latest versions of React. This new transform does not require importing React to use JSX, which simplifies the code and reduces boilerplate.
+
+Overall, React 17 was designed to pave the way for future updates and make it easier to manage complex upgrades, while focusing on making incremental improvements to the library's internals.
+
