@@ -234,6 +234,118 @@ let currentStatus: Status = Status.Active;
 
 Understanding these basic types helps you define more precise and reliable data structures in TypeScript, contributing to better code quality and fewer runtime errors.
 
+## declare keyword in typescript
+
+In TypeScript, the `declare` keyword is used to define types or values that exist outside of the current scope but are expected to be available at runtime. This is especially useful when working with external libraries or integrating with JavaScript code where TypeScript’s static analysis needs to be informed about the existence of certain entities. Here’s how the `declare` keyword is commonly used:
+
+### 1. **Declaring Global Variables**
+
+If you have a global variable or object provided by an external script or library, you can use `declare` to inform TypeScript about its existence without actually providing an implementation. This is useful for integrating with libraries that don't have TypeScript type definitions.
+
+**Example**:
+```typescript
+// Assume there's a global variable `MyGlobalLib` provided by an external script
+declare var MyGlobalLib: any;
+
+MyGlobalLib.doSomething(); // TypeScript will not complain about this call
+```
+
+### 2. **Declaring Modules**
+
+You can use `declare module` to describe the shape of modules that are dynamically loaded or provided by external libraries that don’t have type definitions. This allows TypeScript to understand the structure of these modules.
+
+**Example**:
+```typescript
+// Declare a module with a specific type
+declare module 'my-external-library' {
+  export function someFunction(): void;
+  export const someValue: number;
+}
+
+// Usage in code
+import { someFunction, someValue } from 'my-external-library';
+
+someFunction();
+console.log(someValue);
+```
+
+### 3. **Declaring Type Definitions**
+
+When you want to provide type information for a global object or function that is provided by an external source (like a third-party library), you use `declare`.
+
+**Example**:
+```typescript
+// Declare a global function
+declare function myGlobalFunction(param: string): void;
+
+// Usage
+myGlobalFunction('example');
+```
+
+### 4. **Declaring Classes or Interfaces**
+
+You can also use `declare` to describe classes or interfaces that are implemented elsewhere, perhaps in a library or external code, without providing an actual implementation in TypeScript.
+
+**Example**:
+```typescript
+// Declare an interface
+declare interface Person {
+  name: string;
+  age: number;
+}
+
+// Declare a class
+declare class Car {
+  constructor(make: string, model: string);
+  start(): void;
+}
+```
+
+### 5. **Declaring Namespace**
+
+The `declare` keyword can be used with namespaces to describe existing JavaScript code that uses the namespace pattern.
+
+**Example**:
+```typescript
+// Declare a namespace
+declare namespace MyNamespace {
+  function doSomething(): void;
+  const value: number;
+}
+
+// Usage
+MyNamespace.doSomething();
+console.log(MyNamespace.value);
+```
+
+### 6. **Global Augmentation**
+
+You can augment existing global types using `declare` to add new properties or methods to built-in types.
+
+**Example**:
+```typescript
+// Augment the existing `Window` interface to include a new property
+declare global {
+  interface Window {
+    myCustomProperty: string;
+  }
+}
+
+// Usage
+window.myCustomProperty = 'Hello, World!';
+```
+
+### Summary
+
+- **Global Variables**: Use `declare` to inform TypeScript about global variables or functions that are provided by external scripts.
+- **Modules**: Use `declare module` to describe the shape of modules for integration with third-party libraries.
+- **Type Definitions**: Use `declare` to provide type information for entities that exist outside the TypeScript scope.
+- **Classes and Interfaces**: Use `declare` to describe classes or interfaces implemented elsewhere.
+- **Namespaces**: Use `declare` with namespaces to describe existing namespace patterns.
+- **Global Augmentation**: Extend global types or interfaces with additional properties or methods.
+
+The `declare` keyword helps integrate TypeScript with JavaScript codebases, libraries, and external resources by providing type information without including actual implementations.
+
 ## Explain the various settings in `tsconfig` file?
 
 `tsconfig.json` is a configuration file for TypeScript projects. It allows you to specify compiler options, project settings, and other configurations to control how TypeScript compiles your code. Here’s a breakdown of some common and important settings you might find in a `tsconfig.json` file:
