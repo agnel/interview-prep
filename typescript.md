@@ -72,6 +72,168 @@ greet(42); // Compile-time error: Argument of type 'number' is not assignable to
 
 In summary, TypeScript provides a robust type system that enhances code quality, improves developer experience, and aids in maintaining larger codebases. It helps catch errors early, offers better tooling and IDE support, and supports modern JavaScript features, making it a valuable tool for many development projects.
 
+## basic types in typescript
+
+TypeScript provides a variety of basic types that allow you to define and enforce the kinds of values that variables can hold. Here’s a rundown of the fundamental types in TypeScript:
+
+### 1. **`number`**
+
+- **Description**: Represents both integer and floating-point numbers.
+- **Example**:
+  ```typescript
+  let age: number = 30;
+  let height: number = 5.9;
+  ```
+
+### 2. **`string`**
+
+- **Description**: Represents a sequence of characters.
+- **Example**:
+  ```typescript
+  let name: string = 'Alice';
+  let greeting: string = `Hello, ${name}`;
+  ```
+
+### 3. **`boolean`**
+
+- **Description**: Represents a value that can be either `true` or `false`.
+- **Example**:
+  ```typescript
+  let isActive: boolean = true;
+  let hasCompleted: boolean = false;
+  ```
+
+### 4. **`void`**
+
+- **Description**: Represents the absence of a value, typically used for functions that do not return a value.
+- **Example**:
+  ```typescript
+  function logMessage(message: string): void {
+    console.log(message);
+  }
+  ```
+
+### 5. **`null` and `undefined`**
+
+- **Description**:
+  - **`null`**: Represents the intentional absence of any value.
+  - **`undefined`**: Represents a variable that has been declared but has not been assigned a value.
+- **Example**:
+  ```typescript
+  let nothing: null = null;
+  let notDefined: undefined = undefined;
+  ```
+
+### 6. **`any`**
+
+- **Description**: Represents any type of value, effectively opting out of type checking. Use sparingly as it bypasses the benefits of TypeScript’s type system.
+- **Example**:
+  ```typescript
+  let randomValue: any = 5;
+  randomValue = 'Hello'; // No error
+  ```
+
+### 7. **`unknown`**
+
+- **Description**: Represents any value but requires type checking before performing operations on it. Safer than `any` because it enforces type checking.
+- **Example**:
+  ```typescript
+  let unknownValue: unknown = 10;
+  if (typeof unknownValue === 'number') {
+    console.log(unknownValue.toFixed(2)); // Safe to use as number
+  }
+  ```
+
+### 8. **`never`**
+
+- **Description**: Represents a value that never occurs. Typically used for functions that throw exceptions or have infinite loops.
+- **Example**:
+  ```typescript
+  function throwError(message: string): never {
+    throw new Error(message);
+  }
+
+  function infiniteLoop(): never {
+    while (true) {}
+  }
+  ```
+
+### 9. **`object`**
+
+- **Description**: Represents any value that is not a primitive (i.e., anything that is not `number`, `string`, `boolean`, `symbol`, `null`, or `undefined`).
+- **Example**:
+  ```typescript
+  let obj: object = { name: 'Alice', age: 30 };
+  ```
+
+### 10. **`Array`**
+
+- **Description**: Represents a collection of values of a specific type. Defined using `Array<type>` or `type[]`.
+- **Example**:
+  ```typescript
+  let numbers: number[] = [1, 2, 3];
+  let strings: Array<string> = ['apple', 'banana'];
+  ```
+
+### 11. **`Tuple`**
+
+- **Description**: Represents an array with a fixed number of elements where each element can be of a different type.
+- **Example**:
+  ```typescript
+  let person: [string, number] = ['Alice', 30];
+  ```
+
+### 12. **`Enum`**
+
+- **Description**: Represents a set of named constants. Useful for defining a set of possible values.
+- **Example**:
+  ```typescript
+  enum Direction {
+    Up = 1,
+    Down,
+    Left,
+    Right
+  }
+
+  let move: Direction = Direction.Up;
+  ```
+
+### Example Usage of Basic Types
+
+Here’s a combined example showing how these types might be used in a TypeScript program:
+
+```typescript
+// Using basic types
+let username: string = 'Alice';
+let age: number = 30;
+let isActive: boolean = true;
+let userInfo: { name: string; age: number } = { name: 'Alice', age: 30 };
+
+// Function with void return type
+function greet(user: string): void {
+  console.log(`Hello, ${user}`);
+}
+
+// Function with never return type
+function throwError(message: string): never {
+  throw new Error(message);
+}
+
+// Array and Tuple
+let scores: number[] = [90, 85, 88];
+let coordinate: [number, number] = [10, 20];
+
+// Enum
+enum Status {
+  Active = 'ACTIVE',
+  Inactive = 'INACTIVE'
+}
+
+let currentStatus: Status = Status.Active;
+```
+
+Understanding these basic types helps you define more precise and reliable data structures in TypeScript, contributing to better code quality and fewer runtime errors.
+
 ## Explain the various settings in `tsconfig` file?
 
 `tsconfig.json` is a configuration file for TypeScript projects. It allows you to specify compiler options, project settings, and other configurations to control how TypeScript compiles your code. Here’s a breakdown of some common and important settings you might find in a `tsconfig.json` file:
