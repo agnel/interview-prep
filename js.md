@@ -70,6 +70,18 @@ Non-primitive types, or reference types, are objects that can hold collections o
    let mixedArray = [1, "two", true, null];
    ```
 
+  In JavaScript, arrays are indeed objects, which is why the `typeof` operator returns `'object'` for arrays. This can seem a bit surprising because arrays have special behaviors and methods that distinguish them from plain objects. Here's a bit of background on why this is the case:
+
+  1. **JavaScript's Type System**: JavaScript has a very simple type system. At the core, it distinguishes between two main types: primitive values (like `number`, `string`, `boolean`, etc.) and objects. Arrays are a specialized type of object.
+
+  2. **Internal Representation**: Under the hood, arrays in JavaScript are objects that come with additional properties and methods designed to handle ordered collections of data. They have a `length` property and other array-specific methods like `push`, `pop`, and `map`. But at their core, they use the same internal representation as objects.
+
+  3. **`typeof` Operator**: The `typeof` operator in JavaScript is designed to return a string that indicates the type of the operand. For objects, including arrays, `typeof` returns `'object'`. This is why when you use `typeof` on an array, you get `'object'`.
+
+  4. **Array.isArray()**: To distinguish arrays from other objects, JavaScript provides the `Array.isArray()` method. This method returns `true` if the value is an array and `false` otherwise. This helps in differentiating arrays from other object types, which `typeof` alone does not provide.
+
+  So, while `typeof` tells you that arrays are objects, using `Array.isArray()` gives you a more specific way to check if a value is an array.
+
 3. **Function**: Represents a block of code designed to perform a task. Functions in JavaScript are objects and can be assigned to variables, passed as arguments, and returned from other functions.
    ```javascript
    function greet(name) {
